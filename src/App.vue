@@ -8,23 +8,31 @@
 import axios from 'axios'
 const API_KEY = 'd5cdaac83979c51ad4c168671ad8f76b40200e50'
 
-// function sendData(crypto) {
-//   console.log(crypto)
+function sendData(crypto) {
+  console.log(crypto)
 
-//     axios.get("http://localhost:5000")
-//       .then((response) => {
-//         console.log(response);
-//       })
-//       .catch((error) =>{
-//         alert(error);
-//       });
+    axios.get("http://localhost:5000")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) =>{
+        alert(error);
+      });
 
-// }
-function filterData(crypto) {
-  crypto.data.map(curr => {
-    console.log(curr.name)
-  })
 }
+function filterData(crypto) {
+  
+  const allData = []
+  crypto.data.map(curr => {
+    const cryptoData = {}
+      cryptoData[curr.name] = curr.name
+      cryptoData.price = curr.price
+      cryptoData.logo = curr.logo_url
+    allData.push(cryptoData)
+  })
+  sendData(allData)
+}
+
 export default {
   
   setup() {
