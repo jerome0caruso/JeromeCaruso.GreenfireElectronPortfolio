@@ -17,8 +17,8 @@ function sendData(crypto) {
     .then((response) => {
       console.log(response)
     })
-    .catch((error) => {
-      alert(error)
+    .catch((error) =>{
+      alert(error, "error")
     })
 
 }
@@ -38,7 +38,7 @@ function filterData(crypto) {
 export default {
   
   setup() {
-
+    setInterval(() => {
      axios.get(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=SOL,XTZ, ALGO&interval=1&per-page=100&page=1`)
       .then((response) => {
         filterData(response)
@@ -47,6 +47,7 @@ export default {
       .catch((error) =>{
         alert(error);
       });
+    }, 5000000)
   }
 }
 /*export default {
