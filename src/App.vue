@@ -9,7 +9,7 @@ import axios from 'axios'
 const API_KEY = 'd5cdaac83979c51ad4c168671ad8f76b40200e50'
 
 function sendData(crypto) {
-  console.log(crypto)
+  console.log(JSON.stringify(crypto))
 
     axios.get("http://localhost:5000")
       .then((response) => {
@@ -26,7 +26,7 @@ function filterData(crypto) {
   crypto.data.map(curr => {
     const cryptoData = {}
       cryptoData[curr.name] = curr.name
-      cryptoData.price = curr.price
+      cryptoData.price = Number(curr.price).toFixed(2)
       cryptoData.logo = curr.logo_url
     allData.push(cryptoData)
   })
