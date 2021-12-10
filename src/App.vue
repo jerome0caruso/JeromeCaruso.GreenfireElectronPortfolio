@@ -1,21 +1,23 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld currencyList={currencyList} />
+
 </template>
 
 <script>
 
 import axios from 'axios'
+import HelloWorld from './components/HelloWorld.vue'
 const API_KEY = 'd5cdaac83979c51ad4c168671ad8f76b40200e50'
-
+const currencyList = []
 function sendData(crypto) {
   const jsonData = JSON.stringify(crypto)
-
     axios.post("http://localhost:5000", jsonData, {
       headers: {'Content-Type': 'application/json'}
   })
     .then((response) => {
-      console.log(response)
+      console.log(response.data)
+      currencyList.push(response.data) 
     })
     .catch((error) =>{
       alert(error, "error")
@@ -23,7 +25,6 @@ function sendData(crypto) {
 
 }
 function filterData(crypto) {
-  
   const allData = []
   crypto.data.map(curr => {
     const cryptoData = {}
@@ -36,26 +37,24 @@ function filterData(crypto) {
 }
 
 export default {
-  
+  components: {
+    HelloWorld
+ },
   setup() {
-    setInterval(() => {
      axios.get(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=SOL,XTZ, ALGO&interval=1&per-page=100&page=1`)
       .then((response) => {
         filterData(response)
-        //console.log(response);
+        console.log('Crypto response', response);
       })
       .catch((error) =>{
         alert(error);
       });
-    }, 5000000)
   }
 }
-/*export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}*/
+
+
+
+
 </script>
 
 <style>

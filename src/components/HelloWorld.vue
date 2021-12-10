@@ -1,15 +1,16 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    
+  <div v-for="current of currencyList" :key="item.id">
+    <h1>{{currency.name}}</h1>
+    <img v-bind:src="logo_url"/>
   </div>
 </template>
 
 <script>
+console.log("hello componet")
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    currencyList: Array,
   }
 }
 </script>
