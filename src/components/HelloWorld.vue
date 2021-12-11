@@ -2,8 +2,8 @@
 <div>
   <div class="eachCry" v-for="currency of currencyList" :key="currency.id">
     <h1>{{currency.name}}</h1>
+    <h2>{{currency.price ? '$' + currency.price: null}}</h2>
     <img :src="currency.qrCode"/>
-    <h2>{{'$' + currency.price}}</h2>
   </div>
 </div>
 </template>
@@ -55,6 +55,9 @@ div {
   max-width: 200px;
   width: 200px;
   border: 0;
+}
+.eachCry img {
+  margin-bottom: 1rem;
 }
 .eachCry:last-child {
   background-color: rgb(255, 145, 0);;

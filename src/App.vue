@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <h1>Crypto Prices</h1>
-    <HelloWorld :currencyList="currencyList" />
+    <button class="ss-btn" v-on:click="handleClick">Screen Shot</button>
+    <div id="capture">
+      <HelloWorld :currencyList="currencyList" />
+      <Twitter />
+      <Footer />
+    </div>
   </div>
 
 </template>
@@ -9,11 +13,16 @@
 <script>
 import axios from 'axios'
 import HelloWorld from './components/HelloWorld.vue'
+import Twitter from './components/Twitter.vue'
+import Footer from './components/Footer.vue'
+import html2canvas from 'html2canvas';
 const API_KEY = 'd5cdaac83979c51ad4c168671ad8f76b40200e50'
 
 export default {
   components: {
     HelloWorld,
+    Twitter,
+    Footer
  },
  data() {
    return {
@@ -22,15 +31,19 @@ export default {
  },
    async created() {
     try {
-      const response = await axios.get(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=SOL,XTZ, ALGO&interval=1&per-page=100&page=1`)
-      const filteredData = this.filterData(response);
-      this.sendData(filteredData)
+      this.getData()
+      //setInterval(() => this.getData(), 10000)
     } catch(error) {
       console.log(error);
     }
   },
 
 methods: {
+  async getData() {
+        const response = await axios.get(`https://api.nomics.com/v1/currencies/ticker?key=${API_KEY}&ids=SOL,XTZ, ALGO&interval=1&per-page=100&page=1`)
+        const filteredData = this.filterData(response);
+        this.sendData(filteredData)
+  },
   sendData(crypto) {
     const jsonData = JSON.stringify(crypto)
       axios.post("http://localhost:5000", jsonData, {
@@ -44,12 +57,24 @@ methods: {
       alert(error, "error")
     })
   },
+    handleClick(e) {
+      console.log(e.target)
+      html2canvas(document.querySelector("#capture")).then(canvas => {
+        canvas.setAttribute("id", "canvas");
+        console.log(canvas)
+        const link = document.createElement('a');
+        link.download = 'filename.png';
+        const url = canvas.toDataURL();
+        link.href = url
+        link.click();
+    });
+  },
 
   filterData(crypto) {
     const allData = []
     const myName = {
       name: "Jerome Caruso",
-      price: 0.00,
+      price: '',
       logo: '',
       id: "JC"
       }
@@ -97,29 +122,30 @@ body {
   padding: 30px;
   border-radius: 5px;
   background: rgb(127, 193, 196);
-  height: 90vh;
+  height: 100%;
 }
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
+.ss-btn {
+  display:inline-block;
+  background: rgb(216, 248, 250);
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  text-decoration:none;
+  color:#000000;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+.ss-btn:hover{
+  color:#000000;
+  background-color:rgb(255, 181, 85);
 }
 .btn:focus {
   outline: none;
 }
-.btn:active {
+.ss-btn:active {
   transform: scale(0.98);
 }
-.btn-block {
-  display: block;
-  width: 100%;
-}
+
 </style>
