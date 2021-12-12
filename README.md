@@ -16,8 +16,6 @@ on the greenfireelectronportfolio(current repo)
 npm install
 npm run electron:serve
 
-
-
 ----
 On one of three computers I tested this with, one of the times I had to reinstall on the Electron/Vue app
 npm i @electron/remote
@@ -25,7 +23,7 @@ and
 npm install --save html2canvas
 
 ----
-
+On line 66 in the App.vue file you can change how often the api updates, I have it set for every 10 seconds.
 
 
 
