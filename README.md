@@ -4,7 +4,9 @@ Operating system: Windows 7 64bit
 
 ## Project setup
 ```
-Run.Pull the  #### Link to working application: [greenfireelectronportfolioB](https://jerome0caruso.github.io/greenfireelectronportfolioB/)repo first and run :
+Run.Pull the  
+#### Link to working application: [greenfireelectronportfolioB](https://jerome0caruso.github.io/greenfireelectronportfolioB/)
+repo first and run :
 npm install
 -----
 on the greenfireelectronportfolio(current repo)
