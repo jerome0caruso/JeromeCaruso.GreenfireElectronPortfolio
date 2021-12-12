@@ -64,7 +64,7 @@ export default {
   async created() {
     try {
       this.getData();
-      //setInterval(() => this.getData(), 10000)
+      setInterval(() => this.getData(), 10000)
     } catch (error) {
       console.log(error);
     }
