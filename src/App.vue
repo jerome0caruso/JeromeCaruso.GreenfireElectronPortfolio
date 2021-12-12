@@ -29,7 +29,7 @@
             : 'rgb(216, 248, 250)',
         }"
       >
-        {{darkMode ? 'Lite Mode' : 'Dark Mode'}}
+        {{darkMode ? 'Light Mode' : 'Dark Mode'}}
       </button>
     </div>
 
@@ -85,18 +85,15 @@ export default {
           headers: { "Content-Type": "application/json" },
         })
         .then((response) => {
-          console.log(response.data);
           this.currencyList = response.data;
         })
         .catch((error) => {
           alert(error, "error");
         });
     },
-    handleClick(e) {
-      console.log(e.target);
+    handleClick() {
       html2canvas(document.querySelector("#capture")).then((canvas) => {
         canvas.setAttribute("id", "canvas");
-        console.log(canvas);
         const link = document.createElement("a");
         link.download = "filename.png";
         const url = canvas.toDataURL();
@@ -125,7 +122,6 @@ export default {
     },
     handleMode() {
       this.darkMode = !this.darkMode;
-      console.log(this.darkMode);
     },
   },
 };
