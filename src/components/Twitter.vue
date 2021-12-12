@@ -1,5 +1,5 @@
 <template>
-<div class='main-twitter-container'>
+<div class='main-twitter-container' :style="{'background-color': mode ? 'rgb(0, 0, 0)': 'rgb(255, 181, 85)'}">
     <div class="twitter-container">
         <a class="twitter-timeline" data-width="220" data-tweet-limit="2"  data-height="10" href="https://twitter.com/BBCAfrica?ref_src=twsrc%5Etfw">Tweets by BBCAfrica</a> 
     </div>
@@ -12,7 +12,7 @@
     export default {
         name: 'Twitter',
         props: {
-            
+            mode: String
         },
         data() {
             return {
@@ -28,10 +28,11 @@
 .main-twitter-container {
     display: flex;
     background-color: rgb(255, 181, 85);
-    justify-content: space-around;
+    justify-content: space-evenly;
     border: 3px solid white;
     border-top: none;
     padding: 2rem;
+    flex-wrap: wrap;
 }
 .twitter-container {
   display: flex;

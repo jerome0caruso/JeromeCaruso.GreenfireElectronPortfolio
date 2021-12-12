@@ -1,8 +1,8 @@
 <template>
-<div>
-  <div class="eachCry" v-for="currency of currencyList" :key="currency.id">
-    <h1>{{currency.name}}</h1>
-    <h2>{{currency.price ? '$' + currency.price: null}}</h2>
+<div class="crypto-container" :style="{'background-color': mode ? 'rgb(0, 0, 0)': 'rgb(255, 181, 85)'}">
+  <div class="eachCry" v-for="currency of currencyList" :key="currency.id" >
+    <h1 :style="{'color': mode ? 'rgb(255, 255, 255)': 'rgb(0, 0, 0)'}">{{currency.name}}</h1>
+    <h2 :style="{'color': mode ? 'rgb(255, 255, 255)': 'rgb(0, 0, 0)'}">{{currency.price ? '$' + currency.price: null}}</h2>
     <img :src="currency.qrCode"/>
   </div>
 </div>
@@ -13,6 +13,7 @@ export default {
   name: 'HelloWorld',
   props: {
     currencyList: Array,
+    mode: String
   },
    data() {
     return {
@@ -41,7 +42,7 @@ li {
 a {
   color: #42b983;
 }
-div {
+.crypto-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -59,7 +60,5 @@ div {
 .eachCry img {
   margin-bottom: 1rem;
 }
-.eachCry:last-child {
-  background-color: rgb(255, 145, 0);;
-}
+
 </style>
