@@ -4,8 +4,10 @@ Operating system: Windows 7 64bit
 
 ####Project setup
 ```
-Run.Pull the greenfireelectronportfolioB repo first and run :
-npm install
+Run/Pull the greenfireelectronportfolioB repo first and run :
+npm i
+then 
+npm run devStart
 -----
 on the greenfireelectronportfolio(current repo)
 npm install
