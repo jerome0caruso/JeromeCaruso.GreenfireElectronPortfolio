@@ -1,10 +1,11 @@
 # jeromecaruso.greenfireelectronportfolio
+
+Project setup
+```
 Operating system: Windows 7 64bit
 Node.js v12.19.0
 "electron": "^13.0.0"
 
-Project setup
-```
 Run/Pull the greenfireelectronportfolioB repo first and run :
 npm i
 then 
