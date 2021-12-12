@@ -1,6 +1,7 @@
 # jeromecaruso.greenfireelectronportfolio
 Operating system: Windows 7 64bit
 **** Node.js v12.19.0  ***
+"electron": "^13.0.0"
 
 ####Project setup
 ```
